@@ -14,4 +14,6 @@
     <!--此处的User-->
     <select id="list" resultType="com.example.demo.bean.Position">select * from positioninfo</select>
     <update id="updatePos">update positioninfo set x = #{xValue},y = #{yValue},z = #{zValue},type = #{typeValue} where name = #{nameValue}</update>
+    <delete id="deletePos">delete from positioninfo where name=#{name}</delete>
+    <insert id="addPos">insert into positioninfo (name,x,y,z,type) values (#{name},#{x},#{z},#{y},#{type})</insert>
 </mapper>

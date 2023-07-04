@@ -25,7 +25,17 @@ public class PositionController {
    }
    @RequestMapping("/getPositionUpdate")
    public RequestBody getPositionUpdate(@RequestParam(value = "name") String name,@RequestParam(value = "x") String x,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
-       positionService.updatePos(name,x,y,z,type);
-       return RequestBody.success();
+       RequestBody data=positionService.updatePos(name,x,y,z,type);
+       return data;
    }
+   @RequestMapping("/deletePosition")
+   public RequestBody deletePosition(@RequestParam(value = "name") String name){
+       RequestBody data=positionService.deletePos(name);
+       return data;
+   }
+    @RequestMapping("/addPosition")
+    public RequestBody addPosition(@RequestParam(value = "name") String name,@RequestParam(value = "x") String x,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
+        RequestBody data=positionService.addPos(name,x,y,z,type);
+        return data;
+    }
 }

@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.bean.Position;
+import com.example.demo.bean.RequestBody;
 
 import java.util.List;
 
 public interface PositionService {
     List<Position> listPos();
-    void updatePos(String name,String x,String y,String z,String type);
+    RequestBody updatePos(String name, String x, String y, String z, String type);
+    RequestBody deletePos(String name);
+    RequestBody addPos(String name, String x, String y, String z, String type);
 }

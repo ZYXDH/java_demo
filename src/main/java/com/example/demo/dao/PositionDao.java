@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface PositionDao {
     List<Position> listPos();
-    void updatePos(String name,float x,float y, float z,String type);
+    int updatePos(String name,float x,float y, float z,String type);
+    int deletPos(String name);
+    int addPos(String name,float x,float y, float z,String type);
 }

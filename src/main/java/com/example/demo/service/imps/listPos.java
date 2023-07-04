@@ -1,6 +1,7 @@
 package com.example.demo.service.imps;
 
 import com.example.demo.bean.Position;
+import com.example.demo.bean.RequestBody;
 import com.example.demo.bean.Student;
 import com.example.demo.dao.PositionDao;
 import com.example.demo.dao.StudentDao;
@@ -21,12 +22,41 @@ public class listPos implements PositionService {
         List<Position> list = positionDao.listPos();
         return list;
     }
-    public void updatePos(String name,String x,String y,String z,String type){
-        System.out.println(name+";"+x+";"+y+";"+z+";"+type);
+    public RequestBody updatePos(String name,String x,String y,String z,String type){
+//        System.out.println(name+";"+x+";"+y+";"+z+";"+type);
         float xf = Float.parseFloat(x);
         float yf = Float.parseFloat(y);
         float zf = Float.parseFloat(z);
-        System.out.println(name+";"+xf+";"+yf+";"+zf+";"+type);
-        positionDao.updatePos(name,xf,yf,zf,type);
+//        System.out.println(name+";"+xf+";"+yf+";"+zf+";"+type);
+        int num=positionDao.updatePos(name,xf,yf,zf,type);
+        System.out.println(num);
+        String data;
+        if(num>0){
+            data="success";
+            return RequestBody.success(data);
+        }else{
+            data="NO DATA TO UPDATE";
+            return RequestBody.error(data);
+        }
+
+    }
+    public RequestBody deletePos(String name){
+        int num = positionDao.deletPos(name);
+        if(num>0){
+            return RequestBody.success("success");
+        }else{
+            return RequestBody.error("NO DATA TO UPDATE");
+        }
+    }
+    public RequestBody addPos(String name, String x, String y, String z, String type){
+        float xf = Float.parseFloat(x);
+        float yf = Float.parseFloat(y);
+        float zf = Float.parseFloat(z);
+        int num = positionDao.addPos(name,xf,yf,zf,type);
+        if(num>0){
+            return RequestBody.success("success");
+        }else{
+            return RequestBody.error("NO DATA TO UPDATE");
+        }
     }
 }
