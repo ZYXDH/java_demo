@@ -20,9 +20,9 @@ public class PostionDaoA implements PositionDao {
         System.out.println(list);
         return list;
     }
-    public int updatePos(String name,float x,float y, float z,String type){
+    public int updatePos(String name,float rotate,float x,float y, float z,String type){
         System.out.println(name+";"+x+";"+y+";"+z+";"+type);
-        int num=positionMapper.updatePos(name,x,y,z,type);
+        int num=positionMapper.updatePos(name,rotate,x,y,z,type);
         System.out.println(num);
         return num;
     }
@@ -30,8 +30,8 @@ public class PostionDaoA implements PositionDao {
         int num=positionMapper.deletePos(name);
         return num;
     }
-    public int addPos(String name,float x,float y, float z,String type){
-        int num=positionMapper.addPos(name,x,y,z,type);
+    public int addPos(String name,float rotate,float x,float y, float z,String type){
+        int num=positionMapper.addPos(name,rotate,x,y,z,type);
         return num;
     }
 

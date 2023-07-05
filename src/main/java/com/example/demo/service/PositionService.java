@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PositionService {
     List<Position> listPos();
-    RequestBody updatePos(String name, String x, String y, String z, String type);
+    RequestBody updatePos(String name,String rotate, String x, String y, String z, String type);
     RequestBody deletePos(String name);
-    RequestBody addPos(String name, String x, String y, String z, String type);
+    RequestBody addPos(String name,String rotate, String x, String y, String z, String type);
 }

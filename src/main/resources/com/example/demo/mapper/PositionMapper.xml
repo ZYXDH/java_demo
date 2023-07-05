@@ -13,7 +13,7 @@
     <!--id的值必须和数据处理层的接口名一致-->
     <!--此处的User-->
     <select id="list" resultType="com.example.demo.bean.Position">select * from positioninfo</select>
-    <update id="updatePos">update positioninfo set x = #{xValue},y = #{yValue},z = #{zValue},type = #{typeValue} where name = #{nameValue}</update>
+    <update id="updatePos">update positioninfo set rotate=#{rotate}, x = #{xValue},y = #{yValue},z = #{zValue},type = #{typeValue} where name = #{nameValue}</update>
     <delete id="deletePos">delete from positioninfo where name=#{name}</delete>
-    <insert id="addPos">insert into positioninfo (name,x,y,z,type) values (#{name},#{x},#{z},#{y},#{type})</insert>
+    <insert id="addPos">insert into positioninfo (name,x,y,z,type,rotate) values (#{name},#{x},#{z},#{y},#{type},#{rotate})</insert>
 </mapper>

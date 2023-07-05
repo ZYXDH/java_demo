@@ -22,13 +22,14 @@ public class listPos implements PositionService {
         List<Position> list = positionDao.listPos();
         return list;
     }
-    public RequestBody updatePos(String name,String x,String y,String z,String type){
+    public RequestBody updatePos(String name,String rotate,String x,String y,String z,String type){
 //        System.out.println(name+";"+x+";"+y+";"+z+";"+type);
         float xf = Float.parseFloat(x);
         float yf = Float.parseFloat(y);
         float zf = Float.parseFloat(z);
+        float rotatef=Float.parseFloat(rotate);
 //        System.out.println(name+";"+xf+";"+yf+";"+zf+";"+type);
-        int num=positionDao.updatePos(name,xf,yf,zf,type);
+        int num=positionDao.updatePos(name,rotatef,xf,yf,zf,type);
         System.out.println(num);
         String data;
         if(num>0){
@@ -48,11 +49,12 @@ public class listPos implements PositionService {
             return RequestBody.error("NO DATA TO UPDATE");
         }
     }
-    public RequestBody addPos(String name, String x, String y, String z, String type){
+    public RequestBody addPos(String name,String rotate, String x, String y, String z, String type){
         float xf = Float.parseFloat(x);
         float yf = Float.parseFloat(y);
         float zf = Float.parseFloat(z);
-        int num = positionDao.addPos(name,xf,yf,zf,type);
+        float rotatef=Float.parseFloat(rotate);
+        int num = positionDao.addPos(name,rotatef,xf,yf,zf,type);
         if(num>0){
             return RequestBody.success("success");
         }else{

@@ -24,8 +24,8 @@ public class PositionController {
        return RequestBody.success(list);
    }
    @RequestMapping("/getPositionUpdate")
-   public RequestBody getPositionUpdate(@RequestParam(value = "name") String name,@RequestParam(value = "x") String x,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
-       RequestBody data=positionService.updatePos(name,x,y,z,type);
+   public RequestBody getPositionUpdate(@RequestParam(value = "name") String name,@RequestParam(value = "rotate") String rotate,@RequestParam(value = "x") String x,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
+       RequestBody data=positionService.updatePos(name,rotate,x,y,z,type);
        return data;
    }
    @RequestMapping("/deletePosition")
@@ -34,8 +34,8 @@ public class PositionController {
        return data;
    }
     @RequestMapping("/addPosition")
-    public RequestBody addPosition(@RequestParam(value = "name") String name,@RequestParam(value = "x") String x,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
-        RequestBody data=positionService.addPos(name,x,y,z,type);
+    public RequestBody addPosition(@RequestParam(value = "name") String name,@RequestParam(value = "x") String x,@RequestParam(value = "rotate") String rotate,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
+        RequestBody data=positionService.addPos(name,rotate,x,y,z,type);
         return data;
     }
 }
