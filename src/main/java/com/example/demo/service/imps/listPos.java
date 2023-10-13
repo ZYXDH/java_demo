@@ -27,9 +27,8 @@ public class listPos implements PositionService {
         float xf = Float.parseFloat(x);
         float yf = Float.parseFloat(y);
         float zf = Float.parseFloat(z);
-        float rotatef=Float.parseFloat(rotate);
 //        System.out.println(name+";"+xf+";"+yf+";"+zf+";"+type);
-        int num=positionDao.updatePos(name,rotatef,xf,yf,zf,type);
+        int num=positionDao.updatePos(name,rotate,xf,yf,zf,type);
         System.out.println(num);
         String data;
         if(num>0){
@@ -54,7 +53,7 @@ public class listPos implements PositionService {
         float yf = Float.parseFloat(y);
         float zf = Float.parseFloat(z);
         float rotatef=Float.parseFloat(rotate);
-        int num = positionDao.addPos(name,rotatef,xf,yf,zf,type);
+        int num = positionDao.addPos(name,rotate,xf,yf,zf,type);
         if(num>0){
             return RequestBody.success("success");
         }else{

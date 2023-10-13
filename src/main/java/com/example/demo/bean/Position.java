@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Position {
     private String name;
-    private float rotate;
+    private String rotate;
     private float x;
     private float y;
     private float z;

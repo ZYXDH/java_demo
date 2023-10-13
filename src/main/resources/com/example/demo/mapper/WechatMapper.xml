@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.WechatMapper">
+    <!--   必须添加property属性 ，区别于是否加主键-->
+    <!--<resultMap id="student" type="Student">-->
+    <!--<id column="id" property="id" javaType="int" />-->
+    <!--<result column="username" property="username" javaType="String" />-->
+    <!--<result column="age" property="age" javaType="int" />-->
+    <!--<result column="gender_id" property="gender_id" javaType="int" />-->
+    <!--</resultMap>-->
+    <!--id的值必须和数据处理层的接口名一致-->
+    <!--此处的User-->
+    <select id="getUserCountByOpenid" resultType="int" >select COUNT(*)  from user where open_id=#{openid}</select>
+    <select id="getUserByOpenid" resultType="com.example.demo.bean.UserInfo">select * from user where open_id=#{openid}</select>
+    <insert id="insertUserByOpenid">insert into user (open_id,session_key) values (#{openid},#{sessionkey})</insert>
+</mapper>

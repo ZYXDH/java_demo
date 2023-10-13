@@ -7,10 +7,11 @@ import com.example.demo.bean.User;
 import com.example.demo.mapper.PositionMapper;
 import com.example.demo.service.PositionService;
 import com.example.demo.service.StudentService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,24 +19,53 @@ import java.util.List;
 public class PositionController {
     @Autowired
     private PositionService positionService;
-   @RequestMapping("/getPositionList")
-   public RequestBody getPositionList(){
-       List<Position> list =positionService.listPos();
-       return RequestBody.success(list);
-   }
-   @RequestMapping("/getPositionUpdate")
-   public RequestBody getPositionUpdate(@RequestParam(value = "name") String name,@RequestParam(value = "rotate") String rotate,@RequestParam(value = "x") String x,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
-       RequestBody data=positionService.updatePos(name,rotate,x,y,z,type);
-       return data;
-   }
-   @RequestMapping("/deletePosition")
-   public RequestBody deletePosition(@RequestParam(value = "name") String name){
-       RequestBody data=positionService.deletePos(name);
-       return data;
-   }
-    @RequestMapping("/addPosition")
-    public RequestBody addPosition(@RequestParam(value = "name") String name,@RequestParam(value = "x") String x,@RequestParam(value = "rotate") String rotate,@RequestParam(value = "y") String y,@RequestParam(value = "z") String z,@RequestParam(value = "type") String type){
-        RequestBody data=positionService.addPos(name,rotate,x,y,z,type);
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AddNameBody {
+        private String name;
+        private String rotate;
+        private String x;
+        private String y;
+        private String z;
+        private String type;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class NameBody {
+        private String name;
+    }
+
+    @RequestMapping("/getPositionList")
+    public RequestBody getPositionList() {
+        List<Position> list = positionService.listPos();
+        return RequestBody.success(list);
+    }
+
+    @PostMapping("/UpdatePosition")
+    @ResponseBody
+    public RequestBody getPositionUpdate(@org.springframework.web.bind.annotation.RequestBody AddNameBody addNameBody) {
+        System.out.println(addNameBody);
+        RequestBody data = positionService.updatePos(addNameBody.name, addNameBody.rotate, addNameBody.x, addNameBody.y, addNameBody.z, addNameBody.type);
+        return data;
+    }
+
+
+    @PostMapping("/deletePosition")
+    @ResponseBody
+    public RequestBody deletePosition(@org.springframework.web.bind.annotation.RequestBody NameBody nameBody) {
+        System.out.println(nameBody);
+        RequestBody data = positionService.deletePos(nameBody.name);
+        return data;
+    }
+
+    @PostMapping("/addPosition")
+    @ResponseBody
+    public RequestBody addPosition(@org.springframework.web.bind.annotation.RequestBody AddNameBody addNameBody) {
+        RequestBody data = positionService.addPos(addNameBody.name, addNameBody.rotate, addNameBody.x, addNameBody.y, addNameBody.z, addNameBody.type);
         return data;
     }
 }
