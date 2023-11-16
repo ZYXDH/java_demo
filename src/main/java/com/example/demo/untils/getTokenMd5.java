@@ -1,35 +1,47 @@
 package com.example.demo.untils;
 
+import com.example.demo.bean.UserInfo;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.jws.WebParam;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 
 public class getTokenMd5 {
-    public static String encrypt(String input) {
-        try {
-            // 创建MessageDigest对象，指定加密算法为MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
+    private static Map<String, UserInfo> tokenMap = new HashMap<>();
 
-            // 将输入字符串转换为字节数组
-            byte[] inputBytes = input.getBytes();
 
-            // 计算MD5哈希值
-            byte[] hash = md.digest(inputBytes);
+    public static String generateToken(UserInfo userInfo){
+        //生成唯一不重复的字符串
+        String token = UUID.randomUUID().toString();
+        tokenMap.put(token,userInfo);
+        return token;
+    }
 
-            // 将字节数组转换为十六进制字符串
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) {
-                    hexString.append('0');
-                }
-                hexString.append(hex);
-            }
+    /**
+     * 验证token是否合法
+     * @param token
+     * @return
+     */
+    public static  boolean verify(String token){
+        return tokenMap.containsKey(token);
+    }
 
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            // 处理异常
-            e.printStackTrace();
-            return null;
+    public static UserInfo gentUser(String token){
+        return tokenMap.get(token);
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 20; i++){
+            System.out.println(UUID.randomUUID().toString());
         }
     }
+
+
 }

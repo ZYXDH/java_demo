@@ -29,4 +29,21 @@ public class UserDaoA implements UserDao {
         int num =wechatMapper.insertUserByOpenid(openid,sessionkey);
         return num;
     }
+    public int updateUserToken(String token,String openid){
+        int num= wechatMapper.updateUserToken(token,openid);
+        return num;
+    }
+    public String getLocaltion(String openid){
+        String data=wechatMapper.getLocaltion(openid);
+        return data;
+    }
+
+    public int updateLocaltion(String openid,String localtionid){
+        int num=wechatMapper.updateLocaltion(openid,localtionid);
+        return num;
+    }
+    public int insertLocaltion(String openid,String localtionid){
+        int num=wechatMapper.insertLocaltion(openid,localtionid);
+        return num;
+    }
 }

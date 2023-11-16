@@ -15,5 +15,6 @@ public class UserInfo {
     private String session_key;
     private String open_id;
     private String create_time;
+    private String token;
 
 }

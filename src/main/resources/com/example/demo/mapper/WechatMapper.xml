@@ -15,4 +15,8 @@
     <select id="getUserCountByOpenid" resultType="int" >select COUNT(*)  from user where open_id=#{openid}</select>
     <select id="getUserByOpenid" resultType="com.example.demo.bean.UserInfo">select * from user where open_id=#{openid}</select>
     <insert id="insertUserByOpenid">insert into user (open_id,session_key) values (#{openid},#{sessionkey})</insert>
+    <update id="updateUserToken" >update user set token=#{token} where open_id=#{openid} </update>
+    <select id="getLocaltion" resultType="java.lang.String">select location_id from userweather where open_id=#{openid}</select>
+    <update id="updateLocaltion" >update userweather set location_id=#{localtionid} where open_id=#{openid} </update>
+    <insert id="insertLocaltion">insert into userweather (open_id,location_id) values (#{openid},#{localtionid})</insert>
 </mapper>
